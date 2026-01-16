@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Add Student - SDS{% endblock %}
+
+{% block content %}
+
+<h2>Add Student</h2>
+
+<form method="POST" class="needs-validation" novalidate>
+  <div class="mb-3">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" name="first_name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-control" name="last_name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email (optional)</label>
+    <input type="email" class="form-control" name="email">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone (optional)</label>
+    <input type="tel" class="form-control" name="phone">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date of Birth (optional)</label>
+    <input type="date" class="form-control" name="date_of_birth">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Enrollment Date</label>
+    <input type="date" class="form-control" name="enrollment_date" value="{{ today }}">
+  </div>
+  <button type="submit" class="btn btn-primary">Add Student</button>
+</form>
+
+{% endblock %}

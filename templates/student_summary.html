@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Student Summary - SDS{% endblock %}
+
+{% block content %}
+
+<h2>Student Summary: {{ student.first_name }} {{ student.last_name }}</h2>
+
+<p>Email: {{ student.email or 'None' }}</p>
+<p>Phone: {{ student.phone or 'None' }}</p>
+<p>Date of Birth: {{ student.dob_str }}</p>
+<p>Enrollment Date: {{ student.enroll_str }}</p>
+
+<a href="{{ url_for('edit_student', student_id=student.student_id) }}" class="btn btn-secondary mb-3">Edit Student</a>
+
+<h3>Enrolled Classes</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Class Name</th>
+      <th>Dance Type</th>
+      <th>Grade</th>
+      <th>Teacher</th>
+      <th>Schedule</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cls in classes %}
+    <tr>
+      <td>{{ cls.class_name }}</td>
+      <td>{{ cls.dancetype_name }}</td>
+      <td>{{ cls.grade_name }}</td>
+      <td>{{ cls.teacher_first }} {{ cls.teacher_last }}</td>
+      <td>{{ cls.schedule_day }} at {{ cls.schedule_time }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No classes enrolled</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3>Enrol in New Class</h3>
+{% if available_classes %}
+<form method="POST" action="{{ url_for('enrol', student_id=student.student_id) }}" class="needs-validation" novalidate>
+  <div class="mb-3">
+    <select name="class_id" class="form-select" required>
+      <option value="">Select a class</option>
+      {% for cls in available_classes %}
+      <option value="{{ cls.class_id }}">{{ cls.class_name }} ({{ cls.dancetype_name }} - {{ cls.grade_name }})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Enrol</button>
+</form>
+{% else %}
+<p>No available classes for enrolment.</p>
+{% endif %}
+
+{% endblock %}

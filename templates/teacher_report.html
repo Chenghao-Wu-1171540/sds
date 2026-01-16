@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Report - SDS{% endblock %}
+
+{% block content %}
+
+<h2>Teacher Report</h2>
+
+{% for teacher in teacher_data %}
+<div class="card mb-3">
+  <div class="card-header">
+    {{ teacher.name }}
+  </div>
+  <div class="card-body">
+    <h5>Classes:</h5>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Class Name</th>
+          <th>Student Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cls in teacher.classes %}
+        <tr>
+          <td>{{ cls.class_name }}</td>
+          <td>{{ cls.student_count }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="2">No classes</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p><strong>Total Unique Students:</strong> {{ teacher.total_unique }}</p>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

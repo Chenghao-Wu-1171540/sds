@@ -50,7 +50,7 @@ def student_list():
         query = """
                 SELECT student_id, first_name, last_name, email, phone, date_of_birth, enrollment_date
                 FROM students
-                ORDER BY student_id, last_name, first_name; \
+                ORDER BY last_name, first_name; \
                 """
         cursor.execute(query)
     students = cursor.fetchall()
@@ -365,3 +365,7 @@ def teacher_report():
 
     cursor.close()
     return render_template("teacher_report.html", teacher_data=teacher_data.values())
+
+if __name__ == "__main__":
+    print("Starting server...")
+    app.run(debug=True)

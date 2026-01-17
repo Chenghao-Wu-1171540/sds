@@ -3,11 +3,24 @@
 {% block title %}Home - SDS{% endblock %}
 
 {% block content %}
+<div class="hero" style="background-image: url('https://sab.org/wp-content/uploads/2024/08/240501_sab_5399-copy-1-scaled.jpg');">
+    <div class="hero-overlay">
+        <div class="text-center">
+            <h1 class="display-4 fw-bold">Welcome to Selwyn Dance School</h1>
+            <p class="lead">Discover the joy of dance in Ballet, Jazz, Modern, and Tap</p>
+            <a href="{{ url_for('student_list') }}" class="btn btn-light btn-lg">Explore Students</a>
+        </div>
+    </div>
+</div>
 
-<h2>Home</h2>
-
-<p>Welcome to Selwyn Dance School! We offer classes in Ballet, Jazz, Modern, and Tap for all levels. Join us to learn and have fun.</p>
-
-<img src="https://sab.org/wp-content/uploads/2024/08/240501_sab_5399-copy-1-scaled.jpg" alt="Young students in ballet class" class="img-fluid rounded">
-
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h2>Our Classes</h2>
+        <p>We offer classes for all ages and levels, taught by experienced professionals.</p>
+    </div>
+    <div class="col-md-6">
+        <h2>Join Us!</h2>
+        <p>Enroll today and start your dance journey.</p>
+    </div>
+</div>
 {% endblock %}

@@ -3,24 +3,21 @@
 {% block title %}Teachers - SDS{% endblock %}
 
 {% block content %}
+<h2 class="mb-4">Teachers</h2>
 
-<h2>Services</h2>
-
-<p class="text-success"><strong>If you can see this page in PythonAnywhere, then your database and connect.py 
-    are correctly configured.</strong>  </p>
-
-<table class="table">
-    <tr>
-        <th>Teacher ID</th>
-        <th>Name</th>
-    </tr>
+<div class="row">
     {% for teacher in teachers %}
-    <tr>
-        <td>{{ teacher.teacher_id }}</td>
-        <td>{{teacher.first_name}} {{teacher.last_name}}</td>
-    </tr>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-person-circle display-4 text-primary mb-3"></i>
+                <h5 class="card-title">{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                <p class="card-text">ID: {{ teacher.teacher_id }}</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p class="text-center">No teachers found</p>
     {% endfor %}
-</table>
-
-
+</div>
 {% endblock %}

@@ -11,6 +11,9 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- Tempus Dominus CSS (for datepicker) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
+
     <!-- Custom Styles -->
     <style>
         :root {
@@ -133,5 +136,42 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Tempus Dominus JS (for datepicker) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
+
+    <!-- Initialize Datepickers with English Locale -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInputs = document.querySelectorAll('.datepicker');
+            dateInputs.forEach(function(input) {
+                new tempusDominus.TempusDominus(input, {
+                    localization: {
+                        locale: 'en',  // Force English
+                        format: 'yyyy-MM-dd'  // ISO format for backend compatibility
+                    },
+                    display: {
+                        icons: {
+                            time: 'bi bi-clock',
+                            date: 'bi bi-calendar',
+                            up: 'bi bi-arrow-up',
+                            down: 'bi bi-arrow-down',
+                            previous: 'bi bi-chevron-left',
+                            next: 'bi bi-chevron-right',
+                            today: 'bi bi-calendar-check',
+                            clear: 'bi bi-trash',
+                            close: 'bi bi-x'
+                        },
+                        buttons: {
+                            today: true,
+                            clear: true,
+                            close: true
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

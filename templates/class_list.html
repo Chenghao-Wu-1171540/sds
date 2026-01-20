@@ -3,29 +3,31 @@
 {% block title %}Classes - SDS{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Classes</h2>
+
+<h2 class="mb-3">Classes</h2>
 
 <div class="row">
-    {% for cls in classes %}
-    <div class="col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-header">
-                {{ cls.dancetype_name }} - {{ cls.grade_name }}: {{ cls.class_name }}
-            </div>
-            <div class="card-body">
-                <p><strong>Teacher:</strong> {{ cls.teacher_first }} {{ cls.teacher_last }}</p>
-                <p><strong>Schedule:</strong> {{ cls.schedule_day }} at {{ cls.schedule_time }}</p>
-                <h6>Enrolled Students:</h6>
-                <ul class="list-group list-group-flush">
-                    {% for student in class_students[cls.class_id] %}
-                    <li class="list-group-item"><a href="{{ url_for('student_summary', student_id=student.student_id) }}">{{ student.first_name }} {{ student.last_name }}</a></li>
-                    {% else %}
-                    <li class="list-group-item text-muted">No students enrolled</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+  {% for cls in classes %}
+  <div class="col-md-6 mb-3">
+    <div class="card shadow rounded h-100">
+      <div class="card-header bg-info text-white">
+        {{ cls.dancetype_name }} - {{ cls.grade_name }}: {{ cls.class_name }}
+      </div>
+      <div class="card-body">
+        <p><strong>Teacher:</strong> {{ cls.teacher_first }} {{ cls.teacher_last }}</p>
+        <p><strong>Schedule:</strong> {{ cls.schedule_day }} at {{ cls.schedule_time }}</p>
+        <h6>Enrolled Students:</h6>
+        <ul class="list-group list-group-flush">
+          {% for student in class_students[cls.class_id] %}
+          <li class="list-group-item"><a href="{{ url_for('student_summary', student_id=student.student_id) }}">{{ student.first_name }} {{ student.last_name }}</a></li>
+          {% else %}
+          <li class="list-group-item text-muted">No students enrolled</li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 </div>
+
 {% endblock %}

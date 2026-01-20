@@ -1,177 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}Selwyn Dance School{% endblock %}</title>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>{% block title %}{% endblock %}</title>
+      <!-- CSS only -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <body>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Tempus Dominus CSS (for datepicker) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
-
-    <!-- Custom Styles -->
-    <style>
-        :root {
-            --primary: #6f42c1;       /* Purple */
-            --secondary: #e83e8c;     /* Pink accent */
-            --light-bg: #f8f9fa;
-        }
-        body {
-            background-color: var(--light-bg);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .navbar {
-            background: linear-gradient(90deg, var(--primary), #5a32a3);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: white !important;
-        }
-        .nav-link {
-            color: white !important;
-            transition: color 0.3s;
-        }
-        .nav-link:hover {
-            color: var(--secondary) !important;
-        }
-        h1, h2, h3 {
-            color: var(--primary);
-        }
-        .card {
-            border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .card-header {
-            background-color: var(--primary);
-            color: white;
-            font-weight: bold;
-        }
-        .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-        .btn-primary:hover {
-            background-color: #5a32a3;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f0e8ff;
-        }
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 1.5rem 0;
-        }
-        .hero {
-            position: relative;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(111, 66, 193, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('home') }}">
-                <i class="bi bi-music-note-beamed me-2"></i> Selwyn Dance School
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('teacher_list') }}"><i class="bi bi-person me-1"></i> Teachers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('student_list') }}"><i class="bi bi-people me-1"></i> Students</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('add_student') }}"><i class="bi bi-plus-circle me-1"></i> Add Student</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('class_list') }}"><i class="bi bi-calendar-event me-1"></i> Classes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('teacher_report') }}"><i class="bi bi-bar-chart me-1"></i> Teacher Report</a></li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg bg-primary text-white">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="{{url_for('home')}}">Selwyn Dance School | SDS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{url_for('home')}}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{url_for('teacher_list')}}">Teachers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{url_for('student_list')}}">Students</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{url_for('add_student')}}">Add Student</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{url_for('class_list')}}">Classes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{url_for('teacher_report')}}">Teacher Report</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
-    <div class="container my-5">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
 
-        {% block content %}{% endblock %}
+    <div class="container my-4 shadow p-3 rounded bg-light">
+      <section class="content">
+        <header>
+          {% block header %}
+          <!-- Nested template title appears here -->
+          {% endblock %}
+        </header>
+        <!-- This displays flash messages at the top of the page -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show mt-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+
+        {% block content %}
+        <!-- Nested template content appears here -->
+        {% endblock %}
+      </section>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="container">
-            <p>&copy; 2026 Selwyn Dance School | Contact: 03 123 4567 | Chenghao.Wu@lincolnuni.ac.nz</p>
-        </div>
+    <footer class="bg-primary text-white text-center p-3 mt-4">
+      <div class="text-white">
+        &copy; 2026 Selwyn Dance School | Contact: 03 123 4567 | Chenghao.Wu@lincolnuni.ac.nz
+      </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <!-- Tempus Dominus JS (for datepicker) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
-
-    <!-- Initialize Datepickers with English Locale -->
+    <!-- JavaScript Bundle with Popper -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateInputs = document.querySelectorAll('.datepicker');
-            dateInputs.forEach(function(input) {
-                new tempusDominus.TempusDominus(input, {
-                    localization: {
-                        locale: 'en',  // Force English
-                        format: 'yyyy-MM-dd'  // ISO format for backend compatibility
-                    },
-                    display: {
-                        icons: {
-                            time: 'bi bi-clock',
-                            date: 'bi bi-calendar',
-                            up: 'bi bi-arrow-up',
-                            down: 'bi bi-arrow-down',
-                            previous: 'bi bi-chevron-left',
-                            next: 'bi bi-chevron-right',
-                            today: 'bi bi-calendar-check',
-                            clear: 'bi bi-trash',
-                            close: 'bi bi-x'
-                        },
-                        buttons: {
-                            today: true,
-                            clear: true,
-                            close: true
-                        }
-                    }
-                });
-            });
-        });
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
     </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
 </html>

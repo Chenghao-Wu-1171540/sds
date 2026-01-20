@@ -4,38 +4,36 @@
 
 {% block content %}
 
-<h2>Add Student</h2>
+<div class="card shadow rounded p-4">
+  <h2 class="card-title mb-4">Add Student</h2>
 
-<form method="POST" class="needs-validation" novalidate>
-  <div class="mb-3">
-    <label class="form-label">First Name</label>
-    <input type="text" class="form-control" name="first_name" required>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Last Name</label>
-    <input type="text" class="form-control" name="last_name" required>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Email (optional)</label>
-    <input type="email" class="form-control" name="email">
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Phone (optional)</label>
-    <input type="tel" class="form-control" name="phone">
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Date of Birth (optional)</label>
-    <div class="input-group">
-      <input type="text" class="form-control datepicker" name="date_of_birth">
+  <form method="POST" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label class="form-label">First Name</label>
+      <input type="text" class="form-control" name="first_name" required>
     </div>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Enrollment Date</label>
-    <div class="input-group">
-      <input type="text" class="form-control datepicker" name="enrollment_date" value="{{ today }}">
+    <div class="mb-3">
+      <label class="form-label">Last Name</label>
+      <input type="text" class="form-control" name="last_name" required>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Add Student</button>
-</form>
+    <div class="mb-3">
+      <label class="form-label">Email (optional)</label>
+      <input type="email" class="form-control" name="email">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Phone (optional)</label>
+      <input type="tel" class="form-control" name="phone">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Date of Birth (optional)</label>
+      <input type="date" class="form-control" name="date_of_birth">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Enrollment Date</label>
+      <input type="date" class="form-control" name="enrollment_date" value="{{ today }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+  </form>
+</div>
 
 {% endblock %}

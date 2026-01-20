@@ -4,56 +4,74 @@
 
 {% block content %}
 
-<h2>Student Summary: {{ student.first_name }} {{ student.last_name }}</h2>
-
-<p>Email: {{ student.email or 'None' }}</p>
-<p>Phone: {{ student.phone or 'None' }}</p>
-<p>Date of Birth: {{ student.dob_str }}</p>
-<p>Enrollment Date: {{ student.enroll_str }}</p>
-
-<a href="{{ url_for('edit_student', student_id=student.student_id) }}" class="btn btn-secondary mb-3">Edit Student</a>
-
-<h3>Enrolled Classes</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Class Name</th>
-      <th>Dance Type</th>
-      <th>Grade</th>
-      <th>Teacher</th>
-      <th>Schedule</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for cls in classes %}
-    <tr>
-      <td>{{ cls.class_name }}</td>
-      <td>{{ cls.dancetype_name }}</td>
-      <td>{{ cls.grade_name }}</td>
-      <td>{{ cls.teacher_first }} {{ cls.teacher_last }}</td>
-      <td>{{ cls.schedule_day }} at {{ cls.schedule_time }}</td>
-    </tr>
-    {% else %}
-    <tr><td colspan="5">No classes enrolled</td></tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<h3>Enrol in New Class</h3>
-{% if available_classes %}
-<form method="POST" action="{{ url_for('enrol', student_id=student.student_id) }}" class="needs-validation" novalidate>
-  <div class="mb-3">
-    <select name="class_id" class="form-select" required>
-      <option value="">Select a class</option>
-      {% for cls in available_classes %}
-      <option value="{{ cls.class_id }}">{{ cls.class_name }} ({{ cls.dancetype_name }} - {{ cls.grade_name }})</option>
-      {% endfor %}
-    </select>
+<div class="card mb-4 shadow rounded">
+  <div class="card-header bg-primary text-white">
+    <h2 class="mb-0">Student Summary: {{ student.first_name }} {{ student.last_name }}</h2>
   </div>
-  <button type="submit" class="btn btn-primary">Enrol</button>
-</form>
-{% else %}
-<p>No available classes for enrolment.</p>
-{% endif %}
+  <div class="card-body">
+    <p><strong>Email:</strong> {{ student.email or 'None' }}</p>
+    <p><strong>Phone:</strong> {{ student.phone or 'None' }}</p>
+    <p><strong>Date of Birth:</strong> {{ student.dob_str }}</p>
+    <p><strong>Enrollment Date:</strong> {{ student.enroll_str }}</p>
+    <a href="{{ url_for('edit_student', student_id=student.student_id) }}" class="btn btn-secondary">Edit Student</a>
+  </div>
+</div>
+
+<div class="card mb-4 shadow rounded">
+  <div class="card-header bg-info text-white">
+    <h3 class="mb-0">Enrolled Classes</h3>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Class Name</th>
+            <th>Dance Type</th>
+            <th>Grade</th>
+            <th>Teacher</th>
+            <th>Schedule</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cls in classes %}
+          <tr>
+            <td>{{ cls.class_name }}</td>
+            <td>{{ cls.dancetype_name }}</td>
+            <td>{{ cls.grade_name }}</td>
+            <td>{{ cls.teacher_first }} {{ cls.teacher_last }}</td>
+            <td>{{ cls.schedule_day }} at {{ cls.schedule_time }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="5" class="text-center text-muted">No classes enrolled</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow rounded">
+  <div class="card-header bg-success text-white">
+    <h3 class="mb-0">Enrol in New Class</h3>
+  </div>
+  <div class="card-body">
+    {% if available_classes %}
+    <form method="POST" action="{{ url_for('enrol', student_id=student.student_id) }}" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <select name="class_id" class="form-select" required>
+          <option value="">Select a class</option>
+          {% for cls in available_classes %}
+          <option value="{{ cls.class_id }}">{{ cls.class_name }} ({{ cls.dancetype_name }} - {{ cls.grade_name }})</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Enrol</button>
+    </form>
+    {% else %}
+    <p class="text-muted">No available classes for enrolment.</p>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}

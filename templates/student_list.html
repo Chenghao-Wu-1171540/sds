@@ -3,43 +3,49 @@
 {% block title %}Students - SDS{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Students</h2>
+
+<h2 class="mb-3">Students</h2>
 
 <form method="GET" class="mb-4">
-    <div class="input-group">
-        <input type="text" class="form-control" name="search" placeholder="Search by name..." value="{{ search_term or '' }}">
-        <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i> Search</button>
-    </div>
+  <div class="input-group">
+    <input type="text" class="form-control" name="search" placeholder="Search by first or last name" value="{{search_term or ''}}">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
 </form>
 
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                 <th>#</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>DOB</th>
-                <th>Enrolled</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for student in students %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ student.student_id }}</td>
-                <td><a href="{{ url_for('student_summary', student_id=student.student_id) }}" class="text-decoration-none">{{ student.first_name }} {{ student.last_name }}</a></td>
-                <td>{{ student.email or '-' }}</td>
-                <td>{{ student.phone or '-' }}</td>
-                <td>{{ student.dob_str }}</td>
-                <td>{{ student.enroll_str }}</td>
-            </tr>
-            {% else %}
-            <tr><td colspan="7" class="text-center">No students found</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% if search_term %}
+<p class="text-muted mb-2">Results for "{{search_term}}"</p>
+{% endif %}
+
+<div class="table-responsive shadow rounded">
+  <table class="table table-striped table-bordered">
+    <thead class="bg-info">
+      <tr>
+        <th>#</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date of Birth</th>
+        <th>Enrollment Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ student.student_id }}</td>
+        <td><a href="{{ url_for('student_summary', student_id=student.student_id) }}">{{ student.first_name }} {{ student.last_name }}</a></td>
+        <td>{{ student.email or '-' }}</td>
+        <td>{{ student.phone or '-' }}</td>
+        <td>{{ student.dob_str }}</td>
+        <td>{{ student.enroll_str }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" class="text-center text-muted">No students found</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
+
 {% endblock %}

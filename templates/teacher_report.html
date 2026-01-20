@@ -4,33 +4,35 @@
 
 {% block content %}
 
-<h2>Teacher Report</h2>
+<h2 class="mb-3">Teacher Report</h2>
 
 {% for teacher in teacher_data %}
-<div class="card mb-3">
-  <div class="card-header">
+<div class="card mb-4 shadow rounded">
+  <div class="card-header bg-info text-white">
     {{ teacher.name }}
   </div>
   <div class="card-body">
     <h5>Classes:</h5>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Class Name</th>
-          <th>Student Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for cls in teacher.classes %}
-        <tr>
-          <td>{{ cls.class_name }}</td>
-          <td>{{ cls.student_count }}</td>
-        </tr>
-        {% else %}
-        <tr><td colspan="2">No classes</td></tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Class Name</th>
+            <th>Student Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cls in teacher.classes %}
+          <tr>
+            <td>{{ cls.class_name }}</td>
+            <td>{{ cls.student_count }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="2" class="text-muted">No classes</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     <p><strong>Total Unique Students:</strong> {{ teacher.total_unique }}</p>
   </div>
 </div>

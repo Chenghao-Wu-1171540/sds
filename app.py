@@ -21,7 +21,7 @@ db.init_db(
 def home():
     return render_template("home.html")
 
-
+# teacher list page - fetches all teachers and displays them
 @app.route("/teachers", methods=["GET"])
 def teacher_list():
     cursor = db.get_cursor()
@@ -31,7 +31,7 @@ def teacher_list():
     cursor.close()
     return render_template("teacher_list.html", teachers=teachers)
 
-
+# student list page
 @app.route("/students", methods=["GET"])
 def student_list():
     cursor = db.get_cursor()
@@ -61,7 +61,7 @@ def student_list():
     cursor.close()
     return render_template("student_list.html", students=students, search_term=search_term)
 
-
+# class list page - shows all clases sorted by dance type and grade level
 @app.route("/classes")
 def class_list():
     cursor = db.get_cursor()
@@ -102,7 +102,7 @@ def class_list():
     cursor.close()
     return render_template("class_list.html", classes=classes, class_students=class_students)
 
-
+# student summary page - shows student details and enrolled classes
 @app.route("/student/<int:student_id>")
 def student_summary(student_id):
     cursor = db.get_cursor()
